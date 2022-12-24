@@ -14,5 +14,6 @@ namespace Business.Constants
         public static string Listed = "Listeleme işlemi başarılı bir şekilde gerçekleştirildi";
         public static string Get = "Getirme işlemi başarılı bir şekilde gerçekleştirildi";
         public static string ErrorAdded = "Ekleme işlemi sırasında bir hata oluştu";
+        public static string ReturnDateError = "Ekleme işlemi sırasında bir hata oluştu";
     }
 }
