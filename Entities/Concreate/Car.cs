@@ -1,7 +1,6 @@
-﻿using Entities.Abstract;
+﻿using Core.Entities;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Concreate
 {

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
-    [DbContext(typeof(Context))]
+    [DbContext(typeof(ReCapProjectDBContext))]
     [Migration("20221220190218_CreateDatabase")]
     partial class CreateDatabase
     {

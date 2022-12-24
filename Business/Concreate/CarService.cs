@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concreate;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -47,6 +48,11 @@ namespace Business.Concreate
         public List<Car> GetCarsByColorId(Expression<Func<Car, bool>> filter = null)
         {
             return _carDal.GetAll(filter);
+        }
+
+        public List<CarDetailDto> GetCarsDetail(Expression<Func<CarDetailDto, bool>> filter = null)
+        {
+            return _carDal.GetCarDetails(filter);
         }
 
         public void Update(Car car)
