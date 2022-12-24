@@ -12,12 +12,17 @@ namespace Console
         static void Main(string[] args)
         {
             CarService carService = new CarService(new EfCarDal());
-            foreach (var item in carService.GetCarsDetail())
+            var data = carService.GetCarsDetail();
+            if (data.Success)
             {
-                System.Console.WriteLine(item.Id + " " + item.ModelYear + " " + item.Description +" "+ item.ColorName + " "+ item.BrandName );
+                foreach (var item in data.Data)
+                {
+                    System.Console.WriteLine(item.Id + " " + item.ModelYear + " " + item.Description + " " + item.ColorName + " " + item.BrandName);
+                }
+                System.Console.WriteLine(data.Message);
             }
             //carService.Add(new Car { ModelYear = 2001, Description = "Test Verisidir", DailyPrice = 150, ColorId = 1, BrandId = 2 });
-            
+
             //CarService carService = new CarService(new InMemoryCarDal());
             //foreach (var item in carService.GetAll())
             //{

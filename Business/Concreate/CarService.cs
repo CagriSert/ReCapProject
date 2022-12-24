@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concreate;
 using Entities.DTOs;
@@ -17,47 +19,61 @@ namespace Business.Concreate
             _carDal = carDal;
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
             if (car.Description.Length > 2 && car.DailyPrice > 0)
+            {
                 _carDal.Add(car);
+                return new SuccessResult(Messages.Added);
+            }
             else
-                throw new Exception("Hata Zorunluluklara Uymuyor");
+                return new ErrorResult(Messages.ErrorAdded);
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             _carDal.Delete(car);
+            return new SuccessResult(Messages.Deleted);
         }
 
-        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
+        public IDataResult<List<Car>> GetAll(Expression<Func<Car, bool>> filter = null)
         {
-            return _carDal.GetAll(filter);
+            var data = _carDal.GetAll(filter);
+            return new SuccessDataResult<List<Car>>(data, Messages.Listed);
         }
 
-        public Car GetById(Expression<Func<Car, bool>> filter)
+        public IDataResult<Car> GetById(Expression<Func<Car, bool>> filter)
         {
-            return _carDal.Get(filter);
+            var data = _carDal.Get(filter);
+            return new SuccessDataResult<Car>(data, Messages.Listed);
+
         }
 
-        public List<Car> GetCarsByBrandId(Expression<Func<Car, bool>> filter = null)
+        public IDataResult<List<Car>> GetCarsByBrandId(Expression<Func<Car, bool>> filter = null)
         {
-            return _carDal.GetAll(filter);
+            var data = _carDal.GetAll(filter);
+            return new SuccessDataResult<List<Car>>(data, Messages.Listed);
+
         }
 
-        public List<Car> GetCarsByColorId(Expression<Func<Car, bool>> filter = null)
+        public IDataResult<List<Car>> GetCarsByColorId(Expression<Func<Car, bool>> filter = null)
         {
-            return _carDal.GetAll(filter);
+            var data = _carDal.GetAll(filter);
+            return new SuccessDataResult<List<Car>>(data, Messages.Listed);
+
         }
 
-        public List<CarDetailDto> GetCarsDetail(Expression<Func<CarDetailDto, bool>> filter = null)
+        public IDataResult<List<CarDetailDto>> GetCarsDetail(Expression<Func<CarDetailDto, bool>> filter = null)
         {
-            return _carDal.GetCarDetails(filter);
+            var data = _carDal.GetCarDetails(filter);
+            return new SuccessDataResult<List<CarDetailDto>>(data, Messages.Listed);
+
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
             _carDal.Update(car);
+            return new SuccessResult(Messages.Updated);
         }
     }
 }

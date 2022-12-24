@@ -1,4 +1,5 @@
-﻿using Entities.Concreate;
+﻿using Core.Utilities.Results;
+using Entities.Concreate;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
@@ -8,13 +9,13 @@ namespace Business.Abstract
 {
     public interface ICarService
     {
-        List<Car> GetCarsByColorId(Expression<Func<Car, bool>> filter = null);
-        List<Car> GetCarsByBrandId(Expression<Func<Car, bool>> filter = null);
-        List<CarDetailDto> GetCarsDetail(Expression<Func<CarDetailDto, bool>> filter = null);
-        Car GetById(Expression<Func<Car, bool>> filter);
-        List<Car> GetAll(Expression<Func<Car, bool>> filter = null);
-        void Add(Car car);
-        void Update(Car car);
-        void Delete(Car car);
+        IDataResult<List<Car>> GetCarsByColorId(Expression<Func<Car, bool>> filter = null);
+        IDataResult<List<Car>> GetCarsByBrandId(Expression<Func<Car, bool>> filter = null);
+        IDataResult<List<CarDetailDto>> GetCarsDetail(Expression<Func<CarDetailDto, bool>> filter = null);
+        IDataResult<Car> GetById(Expression<Func<Car, bool>> filter);
+        IDataResult<List<Car>> GetAll(Expression<Func<Car, bool>> filter = null);
+        IResult Add(Car car);
+        IResult Update(Car car);
+        IResult Delete(Car car);
     }
 }
